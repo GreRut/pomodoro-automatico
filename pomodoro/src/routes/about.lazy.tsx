@@ -32,14 +32,19 @@ function About() {
   };
 
   return (
-    <>
-      <Link to="/" className="[&.active]:font-bold">
+    <div className="flex flex-col items-center">
+      <Link to="/"
+            className="btn
+                    hover:bg-terc
+                    hover:border-terc rounded-lg
+                    border-sec no-underline w-20 h-10
+                    bg-sec
+                    text-prim">
         Timer
       </Link>
-      <h2>Info</h2>
       <p>Pomodoros completed: {pomodoroCount}</p>
       <p>{getBadgeMessage()}</p>
-    </>
+    </div>
   );
 }
 

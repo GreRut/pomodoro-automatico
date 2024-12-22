@@ -16,9 +16,15 @@ const App = () => {
 
   return (
     <>
-      <div>
-        <Link to="/about" className="[&.active]:font-bold">
-          About
+      <div className="flex flex-col items-center">
+        <Link to="/about"
+              className="btn
+                        hover:bg-terc
+                        hover:border-terc rounded-lg
+                        border-sec no-underline w-20 h-10
+                        bg-sec
+                        text-prim">
+          Info
         </Link>
         <PomodoroHandler onSessionChange={handleSessionChange} />
       </div>
