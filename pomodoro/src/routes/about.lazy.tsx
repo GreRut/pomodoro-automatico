@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { Link } from '@tanstack/react-router';
 import '../App.css';
@@ -12,9 +12,14 @@ function About() {
   const [pomodoroCount, setPomodoroCount] = useState(loadPomodoroCount);
 
   useEffect(() => {
+    document.body.className = 'default-style';
+  }, []);
+
+  useEffect(() => {
     const savedCount = loadPomodoroCount();
     setPomodoroCount(savedCount);
   }, []);
+
   const getBadgeMessage = (): string => {
     if (pomodoroCount >= 10) {
       return '10';
