@@ -18,22 +18,22 @@ const Timer = ({ onPomodoroComplete }: TimerProps) => {
     }
   }, [timerCount, timerInterval, onPomodoroComplete]);
 
-  const startTimer: MouseEventHandler<HTMLButtonElement> = () => {
-    const id = setInterval(() => setTimerCount((prev) => prev - 1000), 1000);
-    setTimerInterval(id);
-  };
-
-  const stopTimer: MouseEventHandler<HTMLButtonElement> = () => {
-    if (timerInterval !== null) {
+  const toggleTimer: MouseEventHandler<HTMLButtonElement> = () => {
+    if (timerInterval === null) {
+      const id = setInterval(() => setTimerCount((prev) => prev - 1000), 1000);
+      setTimerInterval(id);
+    } else {
       clearInterval(timerInterval);
       setTimerInterval(null);
     }
   };
 
   const resetTimer = () => {
+    if (timerInterval !== null) {
+      clearInterval(timerInterval);
+      setTimerInterval(null);
+    }
     setTimerCount(FOCUS_TIME_MINUTES);
-
-
   };
 
   const timerDate = new Date(timerCount);
@@ -41,8 +41,9 @@ const Timer = ({ onPomodoroComplete }: TimerProps) => {
   return (
     <>
       <div>
-        <button onClick={startTimer}>Start Timer</button>
-        <button onClick={stopTimer}>Stop Timer</button>
+        <button onClick={toggleTimer}>
+          {timerInterval === null ? 'Start Timer' : 'Stop Timer'}
+        </button>
         <button onClick={resetTimer}>Reset Timer</button>
         <h1 className="text-3xl font-bold underline">
           {timerDate.getMinutes().toString().padStart(2, '0')}:
