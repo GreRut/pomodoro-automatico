@@ -2,9 +2,10 @@ import { MouseEventHandler, useState, useEffect } from 'react';
 
 interface TimerProps {
   onPomodoroComplete: () => void;
+  onSessionChange: (isBreak: boolean) => void;
 }
 
-const Timer = ({ onPomodoroComplete }: TimerProps) => {
+const Timer = ({ onPomodoroComplete, onSessionChange }: TimerProps) => {
   const FOCUS_TIME_MS = 5 * 1000;
   const BREAK_TIME_MS = 5 * 1000;
 
@@ -19,14 +20,16 @@ const Timer = ({ onPomodoroComplete }: TimerProps) => {
 
       if (isBreak) {
         setIsBreak(false);
+        onSessionChange(false);
         resetTimer(FOCUS_TIME_MS);
       } else {
         setIsBreak(true);
+        onSessionChange(true);
         resetTimer(BREAK_TIME_MS);
         onPomodoroComplete();
       }
     }
-  }, [timerCount, timerInterval, isBreak, onPomodoroComplete]);
+  }, [timerCount, timerInterval, isBreak, onPomodoroComplete, onSessionChange]);
 
   const toggleTimer: MouseEventHandler<HTMLButtonElement> = () => {
     if (timerInterval === null) {
@@ -55,9 +58,7 @@ const Timer = ({ onPomodoroComplete }: TimerProps) => {
       </button>
       <button onClick={() => resetTimer(FOCUS_TIME_MS)}>Reset Timer</button>
       <h1 className="text-3xl font-bold underline">
-        {isBreak ? 'Break Time' : 'Focus Time'}
-      </h1>
-      <h1 className="text-3xl font-bold underline">
+        {isBreak ? 'Break Time' : 'Focus Time'}:
         {timerDate.getMinutes().toString().padStart(2, '0')}:
         {timerDate.getSeconds().toString().padStart(2, '0')}
       </h1>

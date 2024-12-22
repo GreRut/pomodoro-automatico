@@ -1,50 +1,56 @@
 import { useState, useEffect } from 'react';
 import Timer from './Timer';
-import '../App.css';
 
-const PomodoroHandler = () => {
-  const [pomodoroCount, setPomodoroCount] = useState<number>(0);
-  const [rewardMessage, setRewardMessage] = useState<string>('');
+interface PomodoroHandlerProps {
+    onSessionChange: (isBreak: boolean) => void;
+}
 
-  const loadPomodoroCount = (): number => {
-    const savedCount = localStorage.getItem('pomodoroCount');
-    return savedCount ? parseInt(savedCount, 10) : 0;
-  };
+const PomodoroHandler = ({ onSessionChange }: PomodoroHandlerProps) => {
+    const [pomodoroCount, setPomodoroCount] = useState<number>(0);
+    const [rewardMessage, setRewardMessage] = useState<string>('');
 
-  const savePomodoroCount = (count: number): void => {
-    localStorage.setItem('pomodoroCount', count.toString());
-  };
+    const loadPomodoroCount = (): number => {
+        const savedCount = localStorage.getItem('pomodoroCount');
+        return savedCount ? parseInt(savedCount, 10) : 0;
+    };
 
-  const handlePomodoroComplete = (): void => {
-    const newCount = pomodoroCount + 1;
-    setPomodoroCount(newCount);
-    savePomodoroCount(newCount);
+    const savePomodoroCount = (count: number): void => {
+        localStorage.setItem('pomodoroCount', count.toString());
+    };
 
-    if (newCount === 1) {
-      setRewardMessage('Uno Pomodoro!');
-    } else if (newCount === 5) {
-      setRewardMessage('Cinq Pomodoro');
-    } else if (newCount === 10) {
-      setRewardMessage('10!');
-    } else {
-      setRewardMessage('');
-    }
-  };
+    const handlePomodoroComplete = (): void => {
+        const newCount = pomodoroCount + 1;
+        setPomodoroCount(newCount);
+        savePomodoroCount(newCount);
 
-  useEffect(() => {
-    const initialCount = loadPomodoroCount();
-    setPomodoroCount(initialCount);
-  }, []);
+        if (newCount === 1) {
+            setRewardMessage('Uno Pomodoro!');
+        } else if (newCount === 5) {
+            setRewardMessage('Cinq Pomodoro');
+        } else if (newCount === 10) {
+            setRewardMessage('10!');
+        } else {
+            setRewardMessage('');
+        }
+    };
 
-  return (
-    <div className="pomodoro-handler">
-      <Timer onPomodoroComplete={handlePomodoroComplete} />
-      <div className="pomodoro-progress">
-        <p>Pomodoros completed: {pomodoroCount}</p>
-        {rewardMessage && <p className="reward-message">{rewardMessage}</p>}
-      </div>
-    </div>
-  );
+    useEffect(() => {
+        const initialCount = loadPomodoroCount();
+        setPomodoroCount(initialCount);
+    }, []);
+
+    return (
+        <div>
+            <Timer
+                onPomodoroComplete={handlePomodoroComplete}
+                onSessionChange={onSessionChange}
+            />
+            <div className="pomodoro-progress">
+                <p>Pomodoros completed: {pomodoroCount}</p>
+                {rewardMessage && <p className="reward-message">{rewardMessage}</p>}
+            </div>
+        </div>
+    );
 };
 
 export default PomodoroHandler;
