@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Timer from './Timer';
+import '../App.css';
 
 const PomodoroHandler = () => {
   const [pomodoroCount, setPomodoroCount] = useState<number>(0);

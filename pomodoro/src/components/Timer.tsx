@@ -1,4 +1,5 @@
 import { MouseEventHandler, useState, useEffect } from 'react';
+import '../App.css';
 
 interface TimerProps {
   onPomodoroComplete: () => void;
@@ -41,14 +42,14 @@ const Timer = ({ onPomodoroComplete }: TimerProps) => {
   return (
     <>
       <div>
-        <button onClick={toggleTimer}>
-          {timerInterval === null ? 'Start Timer' : 'Stop Timer'}
-        </button>
-        <button onClick={resetTimer}>Reset Timer</button>
         <h1 className="text-3xl font-bold underline">
           {timerDate.getMinutes().toString().padStart(2, '0')}:
           {timerDate.getSeconds().toString().padStart(2, '0')}
         </h1>
+        <button onClick={toggleTimer}>
+          {timerInterval === null ? 'Start Timer' : 'Stop Timer'}
+        </button>
+        <button onClick={resetTimer}>Reset Timer</button>
       </div>
     </>
   );

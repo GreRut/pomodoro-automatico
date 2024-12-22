@@ -29,9 +29,9 @@ function About() {
   return (
     <>
       <Link to="/" className="[&.active]:font-bold">
-        Home
+        Timer
       </Link>
-      <h2>About</h2>
+      <h2>Info</h2>
       <p>Pomodoros completed: {pomodoroCount}</p>
       <p>{getBadgeMessage()}</p>
     </>

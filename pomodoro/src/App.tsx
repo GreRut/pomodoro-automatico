@@ -6,7 +6,7 @@ const App = () => {
   return (
     <div>
       <Link to="/about" className="[&.active]:font-bold">
-        About
+        Info
       </Link>
       <PomodoroHandler />
     </div>
