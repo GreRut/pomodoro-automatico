@@ -64,23 +64,29 @@ const Timer = ({ onPomodoroComplete, onSessionChange }: TimerProps) => {
       </div>
       <div>
         <button onClick={toggleTimer}
-                className="btn
-                          hover:bg-terc
-                          hover:border-terc rounded-lg
-                          border-sec no-underline w-20 h-10
-                          bg-sec
-                          text-prim">
+                className={`btn
+                  hover:bg-terc
+                  hover:border-terc rounded-lg
+                  border-sec no-underline w-20 h-10
+                  ${
+                    isBreak
+                    ? 'bg-prim text-sec'
+                    : 'bg-sec text-prim'
+                  }`}>
           {timerInterval === null ? 'Start Timer' : 'Stop Timer'}
         </button >
       </div>
       <div>
         <button onClick={() => resetTimer(FOCUS_TIME_MS)}
-                className="btn
-                          hover:bg-terc
-                          hover:border-terc rounded-lg
-                          border-sec no-underline w-20 h-10
-                          bg-sec
-                          text-prim">
+                className={`btn
+                  hover:bg-terc
+                  hover:border-terc rounded-lg
+                  border-sec no-underline w-20 h-10
+                  ${
+                    isBreak
+                    ? 'bg-prim text-sec'
+                    : 'bg-sec text-prim'
+                  }`}>
           Reset Timer
         </button>
       </div>

@@ -26,7 +26,7 @@ const PomodoroHandler = ({ onSessionChange }: PomodoroHandlerProps) => {
         if (newCount === 1) {
             setRewardMessage('Uno Pomodoro!');
         } else if (newCount === 5) {
-            setRewardMessage('Cinq Pomodoro');
+            setRewardMessage('Cinq Pomodoro!');
         } else if (newCount === 10) {
             setRewardMessage('10!');
         } else {
@@ -45,7 +45,7 @@ const PomodoroHandler = ({ onSessionChange }: PomodoroHandlerProps) => {
                 onPomodoroComplete={handlePomodoroComplete}
                 onSessionChange={onSessionChange}
             />
-            <div className="pomodoro-progress">
+            <div>
                 <p>Pomodoros completed: {pomodoroCount}</p>
                 {rewardMessage && <p className="reward-message">{rewardMessage}</p>}
             </div>
