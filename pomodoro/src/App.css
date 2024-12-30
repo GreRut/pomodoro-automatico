@@ -23,3 +23,12 @@ body.complete-background {
   padding: 2rem;
   text-align: center;
 }
+
+.not-completed {
+  color: #bb4949;;
+}
+
+.completed {
+  color: #fdf0d5;
+}
+
