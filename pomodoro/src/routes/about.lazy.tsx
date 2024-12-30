@@ -42,6 +42,11 @@ function About() {
                     text-prim">
         Timer
       </Link>
+      <div>
+        <div>
+          
+        </div>
+      </div>
       <p>Pomodoros completed: {pomodoroCount}</p>
       <p>{getBadgeMessage()}</p>
     </div>

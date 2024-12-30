@@ -40,7 +40,7 @@ const PomodoroHandler = ({ onSessionChange }: PomodoroHandlerProps) => {
     }, []);
 
     return (
-        <div>
+        <div className='flex flex-col items-center space-y-12'>
             <Timer
                 onPomodoroComplete={handlePomodoroComplete}
                 onSessionChange={onSessionChange}

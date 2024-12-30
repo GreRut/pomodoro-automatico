@@ -52,32 +52,38 @@ const Timer = ({ onPomodoroComplete, onSessionChange }: TimerProps) => {
   const timerDate = new Date(timerCount);
 
   return (
-    <div className="flex flex-col items-center">
-      <h1 className="text-3xl font-bold">
-        {isBreak ? 'Break Time' : 'Focus Time'}
-      </h1>
-      <h1 className="text-3xl font-bold">
-        {timerDate.getMinutes().toString().padStart(2, '0')}:
-        {timerDate.getSeconds().toString().padStart(2, '0')}
-      </h1>
-      <button onClick={toggleTimer}
-              className="btn
-                        hover:bg-terc
-                        hover:border-terc rounded-lg
-                        border-sec no-underline w-20 h-10
-                        bg-sec
-                        text-prim">
-        {timerInterval === null ? 'Start Timer' : 'Stop Timer'}
-      </button >
-      <button onClick={() => resetTimer(FOCUS_TIME_MS)}
-              className="btn
-                        hover:bg-terc
-                        hover:border-terc rounded-lg
-                        border-sec no-underline w-20 h-10
-                        bg-sec
-                        text-prim">
-        Reset Timer
-      </button>
+    <div className="flex flex-col items-center space-y-8">
+      <div>
+        <h1 className="text-5xl font-bold">
+          {isBreak ? 'Break Time' : 'Focus Time'}
+        </h1>
+        <h1 className="text-8xl font-bold">
+          {timerDate.getMinutes().toString().padStart(2, '0')}:
+          {timerDate.getSeconds().toString().padStart(2, '0')}
+        </h1>
+      </div>
+      <div>
+        <button onClick={toggleTimer}
+                className="btn
+                          hover:bg-terc
+                          hover:border-terc rounded-lg
+                          border-sec no-underline w-20 h-10
+                          bg-sec
+                          text-prim">
+          {timerInterval === null ? 'Start Timer' : 'Stop Timer'}
+        </button >
+      </div>
+      <div>
+        <button onClick={() => resetTimer(FOCUS_TIME_MS)}
+                className="btn
+                          hover:bg-terc
+                          hover:border-terc rounded-lg
+                          border-sec no-underline w-20 h-10
+                          bg-sec
+                          text-prim">
+          Reset Timer
+        </button>
+      </div>
     </div>
   );
 };
